@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,24 +7,33 @@ import {
   View,
   FlatList,
 } from "react-native";
+import { Card, Paragraph, Title, Button } from "react-native-paper";
 import { Item } from "react-native-paper/lib/typescript/components/List/List";
 
 import { data } from "../../api/data";
 
 const App = () => {
- 
+  const renderItem = ({ item }) => {
+    console.log({ item });
+    return (
+      <Card>
+        <Card.Title title="" subtitle="" />
+        <Card.Content>
+          <Title>{item.name}</Title>
+          <Paragraph>{item.model}</Paragraph>
+        </Card.Content>
+       
+      
+      </Card>
+    );
+  };
   return (
     <SafeAreaView style={styles.safeContainer}>
-
-    <FlatList
+      <FlatList
         data={data.results}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
+        keyExtractor={(props) => props.name}
       />
-      {/* <View style={styles.container}>
-        <Text>{JSON.stringify(data.results)}</Text>
-      </View> */}
     </SafeAreaView>
   );
 };
