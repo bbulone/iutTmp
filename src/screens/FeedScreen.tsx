@@ -12,7 +12,7 @@ import { Item } from "react-native-paper/lib/typescript/components/List/List";
 import { data } from "../../api/data";
 
 const App = () => {
-
+ 
   return (
     <SafeAreaView style={styles.safeContainer}>
 
