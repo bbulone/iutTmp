@@ -7,7 +7,7 @@ import TermsScreen from "./src/screens/TermsScreen";
 const queryClient = new QueryClient();
 const App = () => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <FeedScreen />
       </QueryClientProvider>

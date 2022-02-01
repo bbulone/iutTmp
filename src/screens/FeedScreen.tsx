@@ -4,35 +4,56 @@ import {
   StyleSheet,
   Text,
   StatusBar,
-  View,
   FlatList,
+  Image,
+  View,
 } from "react-native";
 import { Card, Paragraph, Title, Button } from "react-native-paper";
 import { Item } from "react-native-paper/lib/typescript/components/List/List";
 
 import { data } from "../../api/data";
+import { useImage } from "./hooks/useImage";
+import { useStarships } from "./hooks/useStarships";
+import ScreenContainer from "./ScreenContainer";
 
-const App = () => {
+const FeedScreen = () => {
+  const { data, isError, isLoading, refetch } = useStarships();
+  if (isLoading) {
+    return (
+      <View>
+        <Text>Loading </Text>
+      </View>
+    );
+  }
+  if (isError) {
+    return (
+      <View>
+        <Text>ERRORRR</Text>
+      </View>
+    );
+  }
   const renderItem = ({ item }) => {
-    console.log({ item });
+    console.log(item);
+    const source = useImage("cr90corvette");
+
     return (
       <Card>
         <Card.Title title="" subtitle="" />
         <Card.Content>
+          <Card.Cover source={source} />
           <Title>{item.name}</Title>
           <Paragraph>{item.model}</Paragraph>
         </Card.Content>
-       
-      
       </Card>
     );
   };
+
   return (
     <SafeAreaView style={styles.safeContainer}>
       <FlatList
         data={data.results}
         renderItem={renderItem}
-        keyExtractor={(props) => props.name}
+        keyExtractor={(item) => item.name}
       />
     </SafeAreaView>
   );
@@ -47,6 +68,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 20,
   },
+  logo: {
+    width: 200,
+    height: 200,
+  },
 });
 
-export default App;
+export default FeedScreen;
