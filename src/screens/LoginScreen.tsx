@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Headline, TextInput, Button } from "react-native-paper";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function App() {
   const [email, setText] = React.useState("");
@@ -31,7 +30,7 @@ export default function App() {
           onChangeText={setPass}
           secureTextEntry={secure}
         />
-        <Text onPress={toggleSecure}>{secure ? ("Show") :("Hide")}</Text>
+        <Text onPress={toggleSecure}>{secure ? "Show" : "Hide"}</Text>
         <Button
           icon="door"
           mode="contained"

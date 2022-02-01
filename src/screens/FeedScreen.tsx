@@ -23,6 +23,11 @@ interface StarshipCardProps {
   cost_in_credits: string;
 }
 
+function StarshipCard(props: StarshipCardProps) {
+  const { name, model, manufacturer, cost_in_credits } = props;
+  return <Card>...</Card>;
+}
+
 const FeedScreen = () => {
   const { data, isError, isLoading, refetch } = useStarships();
   if (isLoading) {
@@ -40,8 +45,8 @@ const FeedScreen = () => {
     );
   }
   const renderItem = ({ item }) => {
-    console.log(item);
-    const source = useImage("cr90corvette");
+    console.log(item.name);
+    const source = useImage(item.name);
 
     return (
       <Card>
@@ -49,7 +54,9 @@ const FeedScreen = () => {
         <Card.Content>
           <Card.Cover source={source} />
           <Title>{item.name}</Title>
-          <Paragraph>{item.model}</Paragraph>
+          <Paragraph>Model : {item.model}</Paragraph>
+          <Paragraph>Manufacturer : {item.manufacturer}</Paragraph>
+          <Paragraph>{item.cost_in_credits} Credits</Paragraph>
         </Card.Content>
       </Card>
     );
