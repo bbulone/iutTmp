@@ -16,6 +16,13 @@ import { useImage } from "./hooks/useImage";
 import { useStarships } from "./hooks/useStarships";
 import ScreenContainer from "./ScreenContainer";
 
+interface StarshipCardProps {
+  name: string;
+  model: string;
+  manufacturer: string;
+  cost_in_credits: string;
+}
+
 const FeedScreen = () => {
   const { data, isError, isLoading, refetch } = useStarships();
   if (isLoading) {
